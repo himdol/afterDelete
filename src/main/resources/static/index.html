@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+</head>
+<body>
+  index 입니다.
+<div>
+  <button id="clickBtn">데이터가 나와요</button>
+</div>
+
+<script>
+
+  $('#clickBtn').click(function (){
+    console.log("ahah");
+    $.ajax({
+      type : 'get',
+      url : "/exampleData",
+      success : function(result) {
+        console.log(result);
+      },
+      error : function () {
+        console.log("error");
+
+      },
+
+    });
+  })
+
+
+
+</script>
+</body>
+</html>
