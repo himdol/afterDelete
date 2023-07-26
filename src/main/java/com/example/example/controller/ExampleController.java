@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.nio.charset.Charset;
 import java.util.List;
 
-@Controller()
+@Controller
 @Slf4j
 public class ExampleController {
 

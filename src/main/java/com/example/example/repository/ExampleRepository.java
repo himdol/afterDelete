@@ -25,6 +25,7 @@ public class ExampleRepository {
 
     exampleVoList.add(exampleVo);
 
+    exampleVo = new ExampleVo();
     // data2
     exampleVo.setSampleInt(2);
     exampleVo.setSampleInteger(2);
@@ -33,6 +34,7 @@ public class ExampleRepository {
 
     exampleVoList.add(exampleVo);
 
+    exampleVo = new ExampleVo();
     // data3
     exampleVo.setSampleInt(3);
     exampleVo.setSampleInteger(3);

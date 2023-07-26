@@ -3,32 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+          crossorigin="anonymous"></script>
 </head>
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    height: 400px;
+  }
+
+  .content-box {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content-box > div {
+    background-color: antiquewhite;
+    width: 80%;
+    text-align: center;
+  }
+
+  .content-title {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .content {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+
+  .result-value {
+    color: red;
+  }
+</style>
+
 <body>
-  index 입니다.
-<div>
-  <button id="clickBtn">데이터가 나와요</button>
+<div class="container">
+  <div class="content-box">
+    <div>
+      <div class="content-title">
+        두번째 시간입니다.
+      </div>
+      <span class="result-value">
+          결과값 :
+      </span>
+      <span class="result-value" id="value">0</span>
+      <input type="button" id="init" value="초기화"/>
+      <div class="content">
+        <span>더하기.</span>
+        <form action="/cal/add" id="addFrm" name="addFrm" method="post">
+          <input type="number" name="valueNumber" placeholder="숫자를 입력해주세요.">
+          <input type="button" id="addSubmit" value="전송"/>
+        </form>
+      </div>
+      <div class="content">
+        <span>빼기.</span>
+        <form action="/cal/subtract" id="subtractFrm" name="subtractFrm" method="post">
+          <input type="number" name="valueNumber" placeholder="숫자를 입력해주세요.">
+          <input type="button" id="subtractSubmit" value="전송"/>
+        </form>
+      </div>
+      <div class="content">
+        <span>나누기.</span>
+        <form action="/cal/divide" id="divideFrm" name="divideFrm" method="post">
+          <input type="number" name="valueNumber" placeholder="숫자를 입력해주세요.">
+          <input type="button" id="divideSubmit" value="전송"/>
+        </form>
+      </div>
+      <div class="content">
+        <span>곱하기.</span>
+        <form action="/cal/multiply" id="multiplyFrm" name="multiplyFrm" method="post">
+          <input type="number" name="valueNumber" placeholder="숫자를 입력해주세요.">
+          <input type="button" id="multiplySubmit"value="전송"/>
+        </form>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="content-box">
+    <div>
+      <div class="content-title">
+        첫번째 시간입니다.
+      </div>
+      <div class="content">
+        <span>index 입니다.</span>
+        <div class="content-btn-grp">
+          <button id="clickBtn">데이터가 나와요</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<script>
 
-  $('#clickBtn').click(function (){
+<script>
+  //더하기
+  $('#addSubmit').click(function () {
+
+    let formData = {
+      "valueNumber": $("#addFrm").find("input[name='valueNumber']").val()
+    };
+
+    $.ajax({
+      url : "/cal/add",
+      contentType: "application/json; charset=utf-8",
+      type : 'POST',
+      data : JSON.stringify(formData),
+      success : function(data) {
+        console.log("success", data);
+      },
+      error : function(xhr, status) {
+        alert(xhr + " : " + status);
+      }
+    });
+
+
+  });
+
+  //빼기
+  $('#subtractSubmit').click(function () {
+    let formData = {
+      "valueNumber": $("#subtractFrm").find("input[name='valueNumber']").val()
+    };
+
+    $.ajax({
+      url : "/cal/subtract",
+      contentType: "application/json; charset=utf-8",
+      type : 'POST',
+      data : JSON.stringify(formData),
+      success : function(data) {
+        console.log("success", data);
+      },
+      error : function(xhr, status) {
+        alert(xhr + " : " + status);
+      }
+    });
+
+  });
+
+  //곱하기
+  $('#multiplySubmit').click(function () {
+    let formData = {
+      "valueNumber": $("#multiplyFrm").find("input[name='valueNumber']").val()
+    };
+
+    $.ajax({
+      url : "/cal/multiply",
+      contentType: "application/json; charset=utf-8",
+      type : 'POST',
+      data : JSON.stringify(formData),
+      success : function(data) {
+        console.log("success", data);
+      },
+      error : function(xhr, status) {
+        alert(xhr + " : " + status);
+      }
+    });
+  });
+
+  //나누기
+  $('#divideSubmit').click(function () {
+    let formData = {
+      "valueNumber": $("#divideFrm").find("input[name='valueNumber']").val()
+    };
+
+    $.ajax({
+      url : "/cal/divideSubmit",
+      contentType: "application/json; charset=utf-8",
+      type : 'POST',
+      data : JSON.stringify(formData),
+      success : function(data) {
+        console.log("success", data);
+      },
+      error : function(xhr, status) {
+        alert(xhr + " : " + status);
+      }
+    });
+  });
+
+
+
+
+
+
+
+  // 첫번째 시간
+  $('#clickBtn').click(function () {
     console.log("ahah");
     $.ajax({
-      type : 'get',
-      url : "/exampleData",
-      success : function(result) {
+      type: 'get',
+      url: "/exampleData",
+      success: function (result) {
         console.log(result);
       },
-      error : function () {
+      error: function () {
         console.log("error");
 
       },
 
     });
   })
-
 
 
 </script>
