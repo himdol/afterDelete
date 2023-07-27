@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class CalculaterDto {
 
+  //클라이언트 요청값
   private int valueNumber;
 
   private int id;
